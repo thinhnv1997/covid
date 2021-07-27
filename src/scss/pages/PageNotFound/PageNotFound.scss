@@ -1,0 +1,35 @@
+.pageNotFound {
+  width: 90%;
+  margin: auto auto;
+
+  .pageNotFound__img {
+    align-self: center;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .pageNotFound__info {
+    text-align: left;
+    align-self: center;
+    h1 {
+      font-size: 40px;
+      font-weight: bold;
+    }
+    h2 {
+      font-weight: bold;
+    }
+    p {
+      font-size: 16px;
+    }
+    Button {
+      color: black;
+      background-color: yellow;
+      border-color: black;
+      &:hover {
+        background-color: #fdff96;
+      }
+    }
+  }
+}
