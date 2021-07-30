@@ -5,10 +5,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import i18n from "./translation/index";
+import { I18nextProvider } from "react-i18next";
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <I18nextProvider i18n={i18n}>
+      <App />
+    </I18nextProvider>
   </Provider>,
   document.getElementById("root")
 );

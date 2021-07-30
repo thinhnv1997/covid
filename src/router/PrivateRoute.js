@@ -2,8 +2,8 @@ import { Route, Redirect } from "react-router-dom";
 import MainLayout from "../components/MainLayout/MainLayout";
 
 function PrivateRoute({ component: Component, ...rest }) {
-  const checkToken = () => {
-    if (localStorage.getItem("token")) {
+  const checkLogin = () => {
+    if (localStorage.getItem("user")) {
       return true;
     } else {
       return false;
@@ -13,7 +13,7 @@ function PrivateRoute({ component: Component, ...rest }) {
     <Route
       {...rest}
       render={(props) => {
-        return checkToken() ? (
+        return checkLogin() ? (
           <MainLayout>
             <Component {...props} />
           </MainLayout>

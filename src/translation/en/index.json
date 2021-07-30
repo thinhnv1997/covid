@@ -1,0 +1,10 @@
+{
+    "header": {
+        "login": "Log in",
+        "logout":"Log out",
+        "overView":"Overview",
+        "table": "Table Data",
+        "news":"News",
+        "setting":"Setting"
+    }
+}
