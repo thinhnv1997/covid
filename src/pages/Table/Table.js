@@ -1,19 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Column from "antd/lib/table/Column";
-import { Table, Col, Row } from "antd";
+import { Table, Col, Row, Space } from "antd";
 import { useHistory } from "react-router-dom";
 import Flags from "country-flag-icons/react/3x2";
 import Select from "react-select";
-import { CovidAction } from "../../redux/rootActions";
 import axios from "axios";
 
 function TableComponent() {
   const history = useHistory();
-  const dispatch = useDispatch();
-  console.log(1);
   const [countries, setCountries] = useState(null);
-  // const countries = useSelector((state) => state.CovidReducer.tableData);
   const [activeCountry, setActiveCountry] = useState(countries);
 
   const fetchData = useCallback(() => {
@@ -28,10 +23,9 @@ function TableComponent() {
 
         setCountries(dataTable);
         setActiveCountry(dataTable);
-        // dispatch(CovidAction.fetchTableData(dataTable));
       })
       .catch((error) => {});
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     fetchData();
@@ -272,7 +266,8 @@ function TableComponent() {
           render={(country) => {
             const Flag = Flags[country.CountryCode];
             return (
-              <p
+              <Space
+              align="center"
                 style={{ cursor: "pointer" }}
                 onClick={() => {
                   history.push(`/detail-country/${country.Country}`);
@@ -282,8 +277,8 @@ function TableComponent() {
                   style={{ width: "30px", height: "20px" }}
                   key={country.ID}
                 />
-                {" " + country.Country}
-              </p>
+                <span>{" " + country.Country}</span>
+              </Space>
             );
           }}
         />

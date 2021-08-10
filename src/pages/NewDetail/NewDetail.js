@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Row } from "antd";
 import MainLayout from "../../components/MainLayout/MainLayout";
 
-function NewDetail(props) {
+function NewDetail() {
   const { newId } = useParams();
 
   const dataNew = useSelector((state) => state.NewsReducer.data).filter(
@@ -24,7 +24,7 @@ function NewDetail(props) {
           }}
         >
           <h2>{dataNew[0].title}</h2>
-          <img src={dataNew[0].img} style={{ width: "80%", height: "auto" }} />
+          <img src={dataNew[0].img} style={{ width: "80%", height: "auto" }} alt={"news"}/>
           <div>
             <p>{dataNew[0].description}</p>
           </div>

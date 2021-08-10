@@ -12,7 +12,7 @@ function NewCard(props) {
         className="newcard"
         style={{ width: "80%", margin: "0 auto", padding: "20px" }}
       >
-        <img src={dataNew.img} style={{ width: "100%", height: "auto" }} />
+        <img src={dataNew.img} style={{ width: "100%", height: "auto" }} alt={"news"}/>
         <div
           style={{ cursor: "pointer" }}
           className="new-info"
