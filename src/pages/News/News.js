@@ -2,7 +2,6 @@ import { Row } from "antd";
 import React from "react";
 import { useSelector } from "react-redux";
 import MainLayout from "../../components/MainLayout/MainLayout";
-import { NewsReducer } from "../../redux/slices/newsSlice";
 import NewCard from "./NewCard/NewCard";
 
 function News() {

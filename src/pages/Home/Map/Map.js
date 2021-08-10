@@ -17,6 +17,9 @@ function Map() {
     title: {
       text: undefined,
     },
+    // chart: {
+    //   zoomType: "xy"
+    // },
 
     mapNavigation: {
       enableButtons: true,
