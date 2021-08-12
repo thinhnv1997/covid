@@ -21,7 +21,7 @@ function App() {
         <PrivateRoute exact path="/table" component={TableComponent} />
         <PrivateRoute
           exact
-          path="/detail-country/:country"
+          path="/detail-country/:params"
           component={CountryDetail}
         />
         <Route exact path="/news" component={News} />
