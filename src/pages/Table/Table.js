@@ -267,10 +267,12 @@ function TableComponent() {
             const Flag = Flags[country.CountryCode];
             return (
               <Space
-              align="center"
+                align="center"
                 style={{ cursor: "pointer" }}
                 onClick={() => {
-                  history.push(`/detail-country/${country.Country}`);
+                  history.push(
+                    `/detail-country/${country.CountryCode}&${country.Country}`
+                  );
                 }}
               >
                 <Flag
