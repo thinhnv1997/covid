@@ -1,17 +1,26 @@
-import { Row } from "antd";
+import { Col, Row, Typography } from "antd";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import MainLayout from "../../components/MainLayout/MainLayout";
 import NewCard from "./NewCard/NewCard";
 
 function News() {
-  const dataNews = useSelector((state) => state.NewsReducer.data);
+  const { t } = useTranslation();
+  const data = useSelector((state) => state.NewsReducer.data);
 
   return (
     <MainLayout>
-      <Row>
-        {dataNews.map((item) => {
-          return <NewCard data={item} key={"new" + item.id} />;
+      <Row justify={"center"}>
+        <Col span={24}>
+          <Typography.Title
+            style={{ textAlign: "center", color: "red", marginTop: "20px" }}
+          >
+            {t("news.title")}
+          </Typography.Title>
+        </Col>
+        {data.map((news) => {
+          return <NewCard data={news} key={news.source.id} />;
         })}
       </Row>
     </MainLayout>

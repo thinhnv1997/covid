@@ -8,7 +8,7 @@ import PrivateRoute from "./router/PrivateRoute";
 import News from "./pages/News/News";
 import TableComponent from "./pages/Table/Table";
 import CountryDetail from "./pages/CountryDetail/CountryDetail";
-import NewDetail from "./pages/NewDetail/NewDetail";
+import NewDetail from "./pages/NewsDetail/NewsDetail"
 
 import "./scss/main.scss";
 
@@ -25,7 +25,7 @@ function App() {
           component={CountryDetail}
         />
         <Route exact path="/news" component={News} />
-        <Route exact path="/news-detail/:newId" component={NewDetail} />
+        <Route exact path="/news-detail/:newsId" component={NewDetail} />
         <Route path="" component={PageNotFound} />
       </Switch>
     </BrowserRouter>

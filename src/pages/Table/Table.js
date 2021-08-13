@@ -1,12 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Column from "antd/lib/table/Column";
 import { Table, Col, Row, Space } from "antd";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Flags from "country-flag-icons/react/3x2";
 import Select from "react-select";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 function TableComponent() {
+  const { t } = useTranslation();
   const history = useHistory();
   const [countries, setCountries] = useState(null);
   const [activeCountry, setActiveCountry] = useState(countries);
@@ -247,6 +249,15 @@ function TableComponent() {
           md={{ span: 10, offset: 14 }}
         >
           <Select
+            styles={{
+              option: (styles, { isDisabled, isFocused, isSelected }) => {
+                return {
+                  ...styles,
+                  color: isDisabled ? "#ccc" : isSelected ? "white" : "black",
+                  cursor: isDisabled ? "not-allowed" : "default",
+                };
+              },
+            }}
             isDisabled={!activeCountry}
             onChange={handleChange}
             options={options}
@@ -261,7 +272,7 @@ function TableComponent() {
         style={{ padding: "20px", paddingTop: "0px" }}
       >
         <Column
-          title="Country"
+          title={t("table.country")} 
           key="Country"
           render={(country) => {
             const Flag = Flags[country.CountryCode];
@@ -285,40 +296,54 @@ function TableComponent() {
           }}
         />
         <Column
-          title="Total Confirmed"
+          title={t("table.total-confirmed")}  
           dataIndex="TotalConfirmed"
           key="TotalConfirmed"
           sorter={(a, b) => a.TotalConfirmed - b.TotalConfirmed}
         />
         <Column
-          title="New Confirmed"
+          title={t("table.new-confirmed")}  
           dataIndex="NewConfirmed"
           key="NewConfirmed"
           sorter={(a, b) => a.NewConfirmed - b.NewConfirmed}
         />
         <Column
-          title="Total Deaths"
-          dataIndex="TotalDeaths"
-          key="TotalDeaths"
-          sorter={(a, b) => a.TotalDeaths - b.TotalDeaths}
-        />
-        <Column
-          title="New Deaths"
-          dataIndex="NewDeaths"
-          key="NewDeaths"
-          sorter={(a, b) => a.NewDeaths - b.NewDeaths}
-        />
-        <Column
-          title="Total Recovered"
+          title={t("table.total-recovered")}
           dataIndex="TotalRecovered"
           key="TotalRecovered"
           sorter={(a, b) => a.TotalRecovered - b.TotalRecovered}
         />
         <Column
-          title="New Recovered"
+          title={t("table.new-recovered")}
           dataIndex="NewRecovered"
           key="NewRecovered"
           sorter={(a, b) => a.NewRecovered - b.NewRecovered}
+        />
+        <Column
+          title={t("table.total-deaths")}
+          dataIndex="TotalDeaths"
+          key="TotalDeaths"
+          sorter={(a, b) => a.TotalDeaths - b.TotalDeaths}
+        />
+        <Column
+          title={t("table.new-deaths")}
+          dataIndex="NewDeaths"
+          key="NewDeaths"
+          sorter={(a, b) => a.NewDeaths - b.NewDeaths}
+        />
+        
+        <Column
+          title={t("table.detail")}
+          key="ViewDetail"
+          render={(country) => {
+            return (
+              <Link
+                to={`/detail-country/${country.CountryCode}&${country.Country}`}
+              >
+                {t("table.detail")}
+              </Link>
+            );
+          }}
         />
       </Table>
     </>
