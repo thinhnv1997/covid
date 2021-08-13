@@ -4,9 +4,11 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useSelector } from "react-redux";
 import { Col, Row, Spin, Typography } from "antd";
+import { useTranslation } from "react-i18next";
 require("highcharts/modules/map")(Highcharts);
 
 function Map() {
+  const { t } = useTranslation();
   const dataMap = useSelector((state) => state.CovidReducer.globalMapData);
   const data = dataMap.Countries
     ? dataMap.Countries.map((country) => {
@@ -16,6 +18,7 @@ function Map() {
 
   const mapOptions = {
     chart: {
+      backgroundColor: "rgba(255,255,255,0.75)",
       resetZoomButton: {
         position: {
           align: "right",
@@ -40,7 +43,7 @@ function Map() {
 
     legend: {
       title: {
-        text: "Cases:",
+        text: t("map.note"),
       },
       align: "right",
       verticalAlign: "bottom",
@@ -88,7 +91,7 @@ function Map() {
     series: [
       {
         mapData: mapData,
-        name: "Total cases",
+        name: t("map.info"),
         data: data,
       },
     ],
@@ -96,8 +99,8 @@ function Map() {
   return (
     <Row style={{ width: "95%", margin: "0 auto" }}>
       <Col span={24}>
-        <Typography.Title level={2}>
-          WHO Coronavirus (COVID-19) Dashboard
+        <Typography.Title level={2} style={{ margin: "10px 0" }}>
+          {t("map.title")}
         </Typography.Title>
       </Col>
       <Col span={24}>

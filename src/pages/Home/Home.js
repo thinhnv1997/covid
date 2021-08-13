@@ -4,10 +4,11 @@ import Chart from "../../components/Chart/Chart";
 import { CovidAction } from "../../redux/rootActions";
 import { useDispatch, useSelector } from "react-redux";
 import Map from "./Map/Map";
-import Title from "antd/lib/skeleton/Title";
 import Overview from "../../components/Overview/Overview";
+import { useTranslation } from "react-i18next";
 
 function Home() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const globalOverView = useSelector(
     (state) => state.CovidReducer.globalOverview
@@ -24,14 +25,14 @@ function Home() {
       })
       .catch((error) => {});
 
-      axios({
-        url: "https://disease.sh/v3/covid-19/all",
-        method: "GET",
+    axios({
+      url: "https://disease.sh/v3/covid-19/all",
+      method: "GET",
+    })
+      .then((res) => {
+        dispatch(CovidAction.fetchGlobalOverView(res.data));
       })
-        .then((res) => {
-          dispatch(CovidAction.fetchGlobalOverView(res.data));
-        })
-        .catch((error) => {});
+      .catch((error) => {});
 
     axios({
       url: "https://api.covid19api.com/summary",
@@ -53,43 +54,41 @@ function Home() {
 
   return (
     <div
-      style={{
-        backgroundColor: "rgba(255, 255, 255, 0.5)",
-      }}
+      style={
+        {
+          // backgroundColor: "rgba(255, 255, 255, 0.5)",
+        }
+      }
     >
-      <div>
-        <Title level={1} style={{ textAlign: "center" }}>
-          WHO Coronavirus (COVID-19) Dashboard
-        </Title>
-      </div>
-      
       <Map />
-      
-      
-      <Overview number1={globalOverView.cases} number2={globalOverView.recovered} number3={globalOverView.deaths}/>
+
+      <Overview
+        number1={globalOverView.cases}
+        number2={globalOverView.recovered}
+        number3={globalOverView.deaths}
+      />
 
       <Chart
         dataProps={{
-          title: "Global confirmed cases chart:",
+          title: t("chart.global-confirmed"),
           data: dataChart.cases,
-          color:"red"
+          color: "red",
         }}
       ></Chart>
       <Chart
         dataProps={{
-          title: "Global recovered cases chart:",
+          title: t("chart.global-recovered") ,
           data: dataChart.recovered,
-          color:"green"
+          color: "green",
         }}
       ></Chart>
       <Chart
         dataProps={{
-          title: "Global deaths cases chart:",
+          title: t("chart.global-deaths") ,
           data: dataChart.deaths,
-          color:"gray"
+          color: "#434343",
         }}
       ></Chart>
-      
     </div>
   );
 }

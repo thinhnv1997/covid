@@ -1,28 +1,36 @@
-import { Col } from "antd";
+import { Card, Col, Row, Typography } from "antd";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 function NewCard(props) {
-  const history = useHistory();
-  const dataNew = props.data;
+  const { t } = useTranslation();
+  const { data } = props;
 
   return (
-    <Col span={12}>
-      <div
-        className="newcard"
-        style={{ width: "80%", margin: "0 auto", padding: "20px" }}
+    <Col xs={24} lg={12} style={{ padding: "20px" }}>
+      <Card
+        title={data.source.name}
+        extra={
+          <Link to={`/news-detail/${data.source.id}`}>
+            {t("news.read-more")}
+          </Link>
+        }
+        style={{ minHeight: "231px" }}
       >
-        <img src={dataNew.img} style={{ width: "100%", height: "auto" }} alt={"news"}/>
-        <div
-          style={{ cursor: "pointer" }}
-          className="new-info"
-          onClick={() => {
-            history.push(`/news-detail/${dataNew.id}`);
-          }}
-        >
-          <h4>{dataNew.title}</h4>
-        </div>
-      </div>
+        <Row>
+          <Col xs={24} sm={12} style={{ textAlign: "center" }}>
+            <img
+              style={{ width: "200px", height: "100px" }}
+              src={data.urlToImage}
+              alt="news"
+            ></img>
+          </Col>
+          <Col xs={24} sm={12}>
+            <Typography.Paragraph>{data.title}</Typography.Paragraph>
+          </Col>
+        </Row>
+      </Card>
     </Col>
   );
 }

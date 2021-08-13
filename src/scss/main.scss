@@ -2,11 +2,6 @@
 
 @import "./base/reset.scss";
 
-@import "./components//MainLayout/MainLayout.scss";
-@import "./components//Header/Header.scss";
 @import "./pages//Table/Table.scss";
-@import "./pages/News/News.scss";
-@import "./pages/Home/Home.scss";
-@import "./pages/Login/Login.scss";
-@import "./pages//Loading/Loading.scss";
+@import "./components/MainLayout/MainLayout.scss";
 @import "./pages/PageNotFound/PageNotFound.scss";

@@ -1,4 +1,4 @@
-import { Badge, Card, Col, Row, Space, Spin } from "antd";
+import { Col, Row, Space, Spin } from "antd";
 import React from "react";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
@@ -11,7 +11,6 @@ Highcharts.setOptions({
   },
 });
 
-const { Title } = Typography;
 moment.suppressDeprecationWarnings = true;
 
 function Chart(props) {
@@ -34,52 +33,141 @@ function Chart(props) {
     }
   };
   const dataChart = changeData(data);
+  // const optionsDark = {
+  //   colors: [
+  //     // "#2b908f",
+  //     // "#90ee7e",
+  //     // "#f45b5b",
+  //     // "#7798BF",
+  //     // "#aaeeee",
+  //     // "#ff0066",
+  //     // "#eeaaee",
+  //     // "#55BF3B",
+  //     // "#DF5353",
+  //     // "#7798BF",
+  //     "#aaeeee",
+  //   ],
+  //   chart: {
+  //     backgroundColor: {
+  //       linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+  //       stops: [
+  //         [0, "#2a2a2b"],
+  //         [1, "#3e3e40"],
+  //       ],
+  //     },
+  //   },
+  //   rangeSelector: {
+  //     buttonTheme: {
+  //       fill: "#505053",
+  //       stroke: "#000000",
+  //       "stroke-width": 0,
+  //       padding: 10,
+  //       r: 5,
+  //       style: {
+  //         color: "#CCC",
+  //       },
+  //       states: {
+  //         hover: {
+  //           fill: "#707073",
+  //           stroke: "#000000",
+  //           style: {
+  //             color: "white",
+  //           },
+  //         },
+  //         select: {
+  //           fill: "#000003",
+  //           stroke: "#000000",
+  //           style: {
+  //             color: "white",
+  //           },
+  //         },
+  //       },
+  //     },
+
+  //     allButtonsEnabled: true,
+  //     inputPosition: {
+  //       align: "right",
+  //       x: 0,
+  //       y: 0,
+  //     },
+  //     buttonPosition: {
+  //       align: "left",
+  //       x: 0,
+  //       y: 0,
+  //     },
+  //     buttons: [
+  //       {
+  //         type: "week",
+  //         count: 1,
+  //         text: "Week",
+  //         dataGrouping: {
+  //           forced: true,
+  //           units: [["day", [1]]],
+  //         },
+  //       },
+  //       {
+  //         type: "month",
+  //         count: 1,
+  //         text: "Month",
+  //         dataGrouping: {
+  //           forced: true,
+  //           units: [["week", [1]]],
+  //         },
+  //       },
+  //       {
+  //         type: "all",
+  //         text: "All",
+  //         dataGrouping: {
+  //           forced: true,
+  //           units: [["month", [1]]],
+  //         },
+  //       },
+  //     ],
+  //     selected: 3,
+  //   },
+  //   xAxis: {
+  //     type: "datetime",
+  //   },
+  //   navigator: {
+  //     enabled: false,
+  //   },
+
+  //   scrollbar: {
+  //     enabled: false,
+  //   },
+  //   plotOptions: {
+  //     series: {
+  //       color: color,
+  //     },
+  //   },
+  //   series: [
+  //     {
+  //       name: "Total cases",
+  //       data: dataChart,
+  //     },
+  //   ],
+  // };
+
   const options = {
-    // colors: [
-    //   // "#2b908f",
-    //   // "#90ee7e",
-    //   // "#f45b5b",
-    //   // "#7798BF",
-    //   // "#aaeeee",
-    //   // "#ff0066",
-    //   // "#eeaaee",
-    //   // "#55BF3B",
-    //   // "#DF5353",
-    //   // "#7798BF",
-    //   "#aaeeee",
-    // ],
-    // chart: {
-    //   backgroundColor: {
-    //     linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
-    //     stops: [
-    //       [0, "#2a2a2b"],
-    //       [1, "#3e3e40"],
-    //     ],
-    //   },
-    // },
+    chart: {
+      backgroundColor: " rgba(255, 255, 255, 0.5)",
+    },
+
+    colors: [
+      // "#2b908f",
+      // "#90ee7e",
+      // "#f45b5b",
+      // "#7798BF",
+      // "#aaeeee",
+      // "#ff0066",
+      // "#eeaaee",
+      // "#55BF3B",
+      // "#DF5353",
+      // "#7798BF",
+      "#aaeeee",
+    ],
+
     rangeSelector: {
-      // buttonTheme: {
-      //   fill: '#505053',
-      //   stroke: '#000000',
-      //   style: {
-      //      color: '#CCC'
-      //   },
-      //   states: {
-      //      hover: {
-      //         fill: '#707073',
-      //         stroke: '#000000',
-      //         style: {
-      //            color: 'white'
-      //         }
-      //      },
-      //      select: {
-      //         fill: '#000003',
-      //         stroke: '#000000',
-      //         style: {
-      //            color: 'white'
-      //         }
-      //      }
-      //   }},
       buttonTheme: {
         fill: "none",
         stroke: "none",
@@ -87,6 +175,7 @@ function Chart(props) {
         padding: 10,
         r: 5,
       },
+
       allButtonsEnabled: true,
       inputPosition: {
         align: "right",
@@ -153,12 +242,12 @@ function Chart(props) {
 
   return (
     <Spin spinning={!data}>
-      <Row style={{ width: "80%", margin: "30px auto" }}>
+      <Row style={{ width: "80%", margin: "30px auto", paddingBottom: "30px" }}>
         <Col span={24}>
           <Space>
-            <Title level={3} style={{ color: color }}>
+            <Typography.Title level={3} style={{ color: color }}>
               {title}
-            </Title>
+            </Typography.Title>
           </Space>
           <HighchartsReact
             highcharts={Highcharts}

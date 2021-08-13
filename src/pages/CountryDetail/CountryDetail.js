@@ -5,8 +5,11 @@ import Chart from "../../components/Chart/Chart";
 import Flags from "country-flag-icons/react/3x2";
 import { Col, Row, Space, Typography } from "antd";
 import Overview from "../../components/Overview/Overview";
+import { useTranslation } from "react-i18next";
 
 function CountryDetail() {
+  const { t } = useTranslation();
+
   const [dataCountry, setDataCountry] = useState(null);
   const { params } = useParams();
   const countryFlag = params.substring(0, 2);
@@ -58,11 +61,11 @@ function CountryDetail() {
   return (
     <div>
       <Row style={{ width: "95%", margin: " 20px auto" }}>
-        <Col span={24} style={{textAlign:"center"}}>
-          <Space align="baseline" >
-          <Flag style={{ width: "45px", height: "30px" }} />
+        <Col span={24} style={{ textAlign: "center" }}>
+          <Space align="baseline">
+            <Flag style={{ width: "45px", height: "30px" }} />
 
-            <Typography.Title level={2} >{country}</Typography.Title>
+            <Typography.Title level={2}>{country}</Typography.Title>
           </Space>
         </Col>
         <Col span={24}>
@@ -77,23 +80,23 @@ function CountryDetail() {
       </Row>
       <Chart
         dataProps={{
-          title: country + " recovered cases chart:",
+          title: t("chart.country-confirmed"),
           data: changeData("Confirmed"),
           color: "red",
         }}
       />
       <Chart
         dataProps={{
-          title: country + " recovered cases chart:",
+          title: t("chart.country-recovered"),
           data: changeData("Recovered"),
           color: "green",
         }}
       />
       <Chart
         dataProps={{
-          title: country + " deaths cases chart:",
+          title: t("chart.country-deaths"),
           data: changeData("Deaths"),
-          color: "gray",
+          color: "#434343",
         }}
       />
     </div>
