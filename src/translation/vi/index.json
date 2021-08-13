@@ -1,14 +1,49 @@
 {
-    "header": {
-        "login": "Đăng nhập",
-        "logout":"Đăng xuất",
-        "overView":"Tổng quan",
-        "table": "Bảng dữ liệu",
-        "news":"Tin Tức",
-        "setting":"Cài Đặt"
+  "header": {
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "overView": "Tổng quan",
+    "table": "Bảng dữ liệu",
+    "news": "Tin Tức",
+    "setting": "Cài Đặt"
+  },
 
-
-
-
-    }
+  "map": {
+    "title": "Tổng quan tình hình Coronavirus(COVID-19) WHO",
+    "info": "Tổng số ca",
+    "note": "Số ca (người):"
+  },
+  "overView": {
+    "confirmed": "Tổng số ca nhiễm",
+    "recovered": "Tổng số ca phục hồi",
+    "deaths": "Tổng số ca tử vong"
+  },
+  "chart": {
+    "global-confirmed": "Biểu đồ tổng số ca nhiễm trên toàn thế giới:",
+    "global-recovered": "Biểu đồ tổng số ca hồi phục trên toàn thế giới:",
+    "global-deaths": "Biểu đồ tổng số ca tử vong trên toàn thế giới:",
+    "country-confirmed": "Biểu đồ số ca nhiễm:",
+    "country-recovered": "Biểu đồ số ca hồi phục:",
+    "country-deaths": "Biểu đồ số ca tử vong:"
+  },
+  "table": {
+    "country": "Quốc gia",
+    "total-confirmed": "Tổng số ca nhiễm",
+    "new-confirmed": "Số ca nhiễm mới",
+    "total-deaths": "Tổng số ca tử vong",
+    "new-deaths": "Số ca tử vong mới",
+    "total-recovered": "Tổng số ca hồi phục",
+    "new-recovered": "Số ca hồi phục mới",
+    "detail": "Xem chi tiết"
+  },
+  "news": {
+    "title": "Tin tức Covid mới",
+    "read-more": "Xem tin"
+  },
+  "login": {
+    "title": "Đăng nhập",
+    "username": "Tên tài khoản",
+    "password": "Mật khẩu",
+    "button": "Đăng nhập"
+  }
 }

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   globalChartData: {},
   globalMapData: {},
+  globalOverview:{},
   tableData: null,
 };
 
@@ -15,6 +16,9 @@ const covid = createSlice({
     },
     fetchGlobalMapData(state, action) {
       state.globalMapData = action.payload;
+    },
+    fetchGlobalOverView(state, action) {
+      state.globalOverview = action.payload;
     },
     fetchTableData(state, action) {
       state.tableData = action.payload;

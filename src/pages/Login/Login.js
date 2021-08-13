@@ -2,8 +2,10 @@ import { useHistory } from "react-router-dom";
 import { Form, Input, Button, Alert, Typography, Row, Col } from "antd";
 import { useState } from "react";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 function Login() {
+  const { t } = useTranslation();
   const history = useHistory();
   const [isError, setIsError] = useState(false);
 
@@ -18,8 +20,6 @@ function Login() {
       setTimeout(() => setIsError(false), 5000);
     }
   };
-
-  const { Title } = Typography;
 
   return (
     <>
@@ -43,12 +43,16 @@ function Login() {
             className="login-form"
             initialValues={{ remember: true }}
             onFinish={onFinish}
-            style={{ padding: " 20px", border: "1px solid gray", backgroundColor:"rgba(240, 240, 240, 0.65)"}}
+            style={{
+              padding: " 20px",
+              border: "1px solid gray",
+              backgroundColor: "rgba(240, 240, 240, 0.65)",
+            }}
           >
             <Form.Item>
-              <Title level={2} style={{ textAlign: "center" }}>
-                Log in
-              </Title>
+              <Typography.Title level={2} style={{ textAlign: "center" }}>
+                {t("login.title")}
+              </Typography.Title>
             </Form.Item>
 
             <Form.Item
@@ -59,7 +63,7 @@ function Login() {
             >
               <Input
                 prefix={<UserOutlined className="site-form-item-icon" />}
-                placeholder="Username"
+                placeholder={t("login.username")}
               />
             </Form.Item>
             <Form.Item
@@ -71,7 +75,7 @@ function Login() {
               <Input
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
-                placeholder="Password"
+                placeholder={t("login.password")}
               />
             </Form.Item>
             <Form.Item>
@@ -80,7 +84,7 @@ function Login() {
                 htmlType="submit"
                 className="login-form-button"
               >
-                Log in
+                {t("login.button")}
               </Button>
             </Form.Item>
           </Form>

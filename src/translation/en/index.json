@@ -1,10 +1,48 @@
 {
-    "header": {
-        "login": "Log in",
-        "logout":"Log out",
-        "overView":"Overview",
-        "table": "Table Data",
-        "news":"News",
-        "setting":"Setting"
-    }
+  "header": {
+    "login": "Log in",
+    "logout": "Log out",
+    "overView": "Overview",
+    "table": "Table Data",
+    "news": "News",
+    "setting": "Setting"
+  },
+  "map": {
+    "title": "WHO Coronavirus (COVID-19) Dashboard",
+    "info": "Total cases",
+    "note": "Cases (person):"
+  },
+  "overView": {
+    "confirmed": "Total Confirmed",
+    "recovered": "Total Recovered",
+    "deaths": "Total Deaths"
+  },
+  "chart": {
+    "global-confirmed": "Global confirmed cases chart:",
+    "global-recovered": "Global recovered cases chart:",
+    "global-deaths": "Global deaths cases chart:",
+    "country-confirmed": "Confirmed cases chart:",
+    "country-recovered": "Recovered cases chart:",
+    "country-deaths": "Deaths cases chart:"
+  },
+  "table": {
+    "country": "Country",
+    "total-confirmed": "Total Confirmed",
+    "new-confirmed": "New Confirmed",
+    "total-deaths": "Total Deaths",
+    "new-deaths": "New Deaths",
+    "total-recovered": "Total Recovered",
+    "new-recovered": "New Recovered",
+    "detail": "View Detail"
+  },
+  "news": {
+    "title": "Covid News",
+    "read-more": "Read More"
+  },
+  "login": {
+    "title": "Log in",
+    "username": "Username",
+    "password": "Password",
+    "button": "Log in"
+  }
 }

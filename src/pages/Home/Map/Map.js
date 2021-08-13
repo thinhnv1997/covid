@@ -3,9 +3,12 @@ import mapData from "./mapData";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useSelector } from "react-redux";
+import { Col, Row, Spin, Typography } from "antd";
+import { useTranslation } from "react-i18next";
 require("highcharts/modules/map")(Highcharts);
 
 function Map() {
+  const { t } = useTranslation();
   const dataMap = useSelector((state) => state.CovidReducer.globalMapData);
   const data = dataMap.Countries
     ? dataMap.Countries.map((country) => {
@@ -14,23 +17,35 @@ function Map() {
     : [];
 
   const mapOptions = {
+    chart: {
+      backgroundColor: "rgba(255,255,255,0.75)",
+      resetZoomButton: {
+        position: {
+          align: "right",
+          verticalAlign: "top",
+          x: -20,
+          y: 60,
+        },
+      },
+    },
     title: {
       text: undefined,
     },
-    // chart: {
-    //   zoomType: "xy"
-    // },
 
     mapNavigation: {
       enableButtons: true,
-      enableDoubleClickZoomTo: true,
+      enableDoubleClickZoom: true,
+      buttonOptions: {
+        align: "right",
+        x: -20,
+      },
     },
 
     legend: {
       title: {
-        text: "Total cases per country",
+        text: t("map.note"),
       },
-      align: "left",
+      align: "right",
       verticalAlign: "bottom",
       floating: true,
       layout: "vertical",
@@ -68,7 +83,7 @@ function Map() {
           to: 5000000,
         },
         {
-          from: 5000001,
+          from: 5000000,
         },
       ],
     },
@@ -76,19 +91,28 @@ function Map() {
     series: [
       {
         mapData: mapData,
-        name: "Total Confirmed ",
+        name: t("map.info"),
         data: data,
       },
     ],
   };
   return (
-    <div style={{ width: "95%", margin: "0 auto" }}>
-      <HighchartsReact
-        options={mapOptions}
-        constructorType={"mapChart"}
-        highcharts={Highcharts}
-      />
-    </div>
+    <Row style={{ width: "95%", margin: "0 auto" }}>
+      <Col span={24}>
+        <Typography.Title level={2} style={{ margin: "10px 0" }}>
+          {t("map.title")}
+        </Typography.Title>
+      </Col>
+      <Col span={24}>
+        <Spin spinning={!dataMap.Countries}>
+          <HighchartsReact
+            options={mapOptions}
+            constructorType={"mapChart"}
+            highcharts={Highcharts}
+          />
+        </Spin>
+      </Col>
+    </Row>
   );
 }
 

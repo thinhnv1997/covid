@@ -1,12 +1,20 @@
-import { Col, Row } from "antd";
+import { Col, Row, Space, Spin } from "antd";
 import React from "react";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import moment from "moment";
+import { Typography } from "antd";
+
+Highcharts.setOptions({
+  lang: {
+    rangeSelectorZoom: "Filter by",
+  },
+});
+
 moment.suppressDeprecationWarnings = true;
 
 function Chart(props) {
-  const { title, data = [] } = props.dataProps;
+  const { title, data = null, color } = props.dataProps;
   const changeData = (data) => {
     if (data) {
       let result = [];
@@ -24,19 +32,158 @@ function Chart(props) {
       return null;
     }
   };
-
   const dataChart = changeData(data);
+  // const optionsDark = {
+  //   colors: [
+  //     // "#2b908f",
+  //     // "#90ee7e",
+  //     // "#f45b5b",
+  //     // "#7798BF",
+  //     // "#aaeeee",
+  //     // "#ff0066",
+  //     // "#eeaaee",
+  //     // "#55BF3B",
+  //     // "#DF5353",
+  //     // "#7798BF",
+  //     "#aaeeee",
+  //   ],
+  //   chart: {
+  //     backgroundColor: {
+  //       linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+  //       stops: [
+  //         [0, "#2a2a2b"],
+  //         [1, "#3e3e40"],
+  //       ],
+  //     },
+  //   },
+  //   rangeSelector: {
+  //     buttonTheme: {
+  //       fill: "#505053",
+  //       stroke: "#000000",
+  //       "stroke-width": 0,
+  //       padding: 10,
+  //       r: 5,
+  //       style: {
+  //         color: "#CCC",
+  //       },
+  //       states: {
+  //         hover: {
+  //           fill: "#707073",
+  //           stroke: "#000000",
+  //           style: {
+  //             color: "white",
+  //           },
+  //         },
+  //         select: {
+  //           fill: "#000003",
+  //           stroke: "#000000",
+  //           style: {
+  //             color: "white",
+  //           },
+  //         },
+  //       },
+  //     },
+
+  //     allButtonsEnabled: true,
+  //     inputPosition: {
+  //       align: "right",
+  //       x: 0,
+  //       y: 0,
+  //     },
+  //     buttonPosition: {
+  //       align: "left",
+  //       x: 0,
+  //       y: 0,
+  //     },
+  //     buttons: [
+  //       {
+  //         type: "week",
+  //         count: 1,
+  //         text: "Week",
+  //         dataGrouping: {
+  //           forced: true,
+  //           units: [["day", [1]]],
+  //         },
+  //       },
+  //       {
+  //         type: "month",
+  //         count: 1,
+  //         text: "Month",
+  //         dataGrouping: {
+  //           forced: true,
+  //           units: [["week", [1]]],
+  //         },
+  //       },
+  //       {
+  //         type: "all",
+  //         text: "All",
+  //         dataGrouping: {
+  //           forced: true,
+  //           units: [["month", [1]]],
+  //         },
+  //       },
+  //     ],
+  //     selected: 3,
+  //   },
+  //   xAxis: {
+  //     type: "datetime",
+  //   },
+  //   navigator: {
+  //     enabled: false,
+  //   },
+
+  //   scrollbar: {
+  //     enabled: false,
+  //   },
+  //   plotOptions: {
+  //     series: {
+  //       color: color,
+  //     },
+  //   },
+  //   series: [
+  //     {
+  //       name: "Total cases",
+  //       data: dataChart,
+  //     },
+  //   ],
+  // };
 
   const options = {
+    chart: {
+      backgroundColor: " rgba(255, 255, 255, 0.5)",
+    },
+
+    colors: [
+      // "#2b908f",
+      // "#90ee7e",
+      // "#f45b5b",
+      // "#7798BF",
+      // "#aaeeee",
+      // "#ff0066",
+      // "#eeaaee",
+      // "#55BF3B",
+      // "#DF5353",
+      // "#7798BF",
+      "#aaeeee",
+    ],
+
     rangeSelector: {
+      buttonTheme: {
+        fill: "none",
+        stroke: "none",
+        "stroke-width": 0,
+        padding: 10,
+        r: 5,
+      },
+
       allButtonsEnabled: true,
       inputPosition: {
-        align: "left",
-        x: 20,
+        align: "right",
+        x: 0,
         y: 0,
       },
       buttonPosition: {
-        align: "right",
+        align: "left",
         x: 0,
         y: 0,
       },
@@ -44,7 +191,7 @@ function Chart(props) {
         {
           type: "week",
           count: 1,
-          text: "Day",
+          text: "Week",
           dataGrouping: {
             forced: true,
             units: [["day", [1]]],
@@ -53,15 +200,15 @@ function Chart(props) {
         {
           type: "month",
           count: 1,
-          text: "Week",
+          text: "Month",
           dataGrouping: {
             forced: true,
-            units: [["day", [7]]],
+            units: [["week", [1]]],
           },
         },
         {
           type: "all",
-          text: "Month",
+          text: "All",
           dataGrouping: {
             forced: true,
             units: [["month", [1]]],
@@ -70,7 +217,9 @@ function Chart(props) {
       ],
       selected: 3,
     },
-
+    xAxis: {
+      type: "datetime",
+    },
     navigator: {
       enabled: false,
     },
@@ -78,29 +227,36 @@ function Chart(props) {
     scrollbar: {
       enabled: false,
     },
+    plotOptions: {
+      series: {
+        color: color,
+      },
+    },
     series: [
       {
+        name: "Total cases",
         data: dataChart,
       },
     ],
   };
 
   return (
-    <Row style={{ padding: "20px" }}>
-      <Col span={8} style={{ marginTop: "5%" }}>
-        <p>{title + ":"}</p>
-        <p>
-          {data ? Object.values(data)[Object.values(data).length - 1] : null}
-        </p>
-      </Col>
-      <Col span={16} style={{ padding: "20px" }}>
-        <HighchartsReact
-          highcharts={Highcharts}
-          constructorType={"stockChart"}
-          options={options}
-        />
-      </Col>
-    </Row>
+    <Spin spinning={!data}>
+      <Row style={{ width: "80%", margin: "30px auto", paddingBottom: "30px" }}>
+        <Col span={24}>
+          <Space>
+            <Typography.Title level={3} style={{ color: color }}>
+              {title}
+            </Typography.Title>
+          </Space>
+          <HighchartsReact
+            highcharts={Highcharts}
+            constructorType={"stockChart"}
+            options={options}
+          />
+        </Col>
+      </Row>
+    </Spin>
   );
 }
 
